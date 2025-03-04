@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Residence } from 'src/app/core/Models/residence';
+import { ResidenceService } from 'src/app/core/services/residence.service';
 
 @Component({
   selector: 'app-residences',
@@ -7,18 +8,19 @@ import { Residence } from 'src/app/core/Models/residence';
   styleUrls: ['./residences.component.css']
 })
 export class ResidencesComponent {
-  listResidences:Residence[]=[
-    {id:1,"name": "El fel","address":"Borj Cedria",
-    "image":"../../assets/images/R1.jpg", status: "Disponible"},
-    {id:2,"name": "El yasmine",
-    "address":"Ezzahra","image":"../../assets/images/R2.jpg", status:
-    "Disponible" },
-    {id:3,"name": "El Arij",
-    "address":"Rades","image":"../../assets/images/R3.jpg", status:
-    "Vendu"},
-    {id:4,"name": "El Anber","address":"inconnu",
-    "image":"../../assets/images/R4.jpg", status: "En Construction"}
-    ];
+ 
+  constructor(private resServ:ResidenceService) { }
+  listResidences:Residence[]=[ ];
+    
+  ngOnInit(){
+   //this.listResidences=this.resServ.getResidence();
+   this.resServ.getResidence().subscribe(
+    data => this.listResidences=data,
+    erreur =>console.log("erreur"),
+    ()=>console.log("le chargementdes residences est terminés ")
+    
+   );
+   }
     selectedResidenceId: number | null = null;
     showadd(R:Residence)
     { if (R.address== 'inconnu')
@@ -44,5 +46,12 @@ export class ResidencesComponent {
           return this.listResidences.filter(residence =>
             residence.address.toLowerCase().includes(this.searchText.toLowerCase())
           );
+        }
+        delete(id:number){
+          this.resServ.deleteResidence(id).subscribe(()=>this.resServ.getResidence().subscribe(
+            data => this.listResidences=data,
+            erreur =>console.log("erreur"),
+            ()=>console.log("le chargementdes residences est terminés ")
+            ));
         }
 }

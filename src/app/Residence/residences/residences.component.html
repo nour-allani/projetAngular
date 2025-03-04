@@ -15,9 +15,15 @@
       <h5  *ngIf="selectedResidenceId === R.id" class="card-text">{{R.address}}</h5>
       <a   class="btn btn-primary" (click)="showadd(R)">ShowLocation</a>
       <a   class="btn btn-primary" [routerLink]="['/residenceD',R.id]">Show Details</a>
+      <a   class="btn btn-primary" (click)="delete(R.id)">Delete</a>
+      <a   class="btn btn-warning" [routerLink]="['/update',R.id]" [queryParams]="{'title':R.name}">Update</a>
+      
       <button class="btn btn-success ml-2" (click)="addToFavorites(R)">Like ❤️</button>
     </div>
   </div>
 </div>
+</div>
+<div style="text-align: center; margin-top: 30px;">
+  <button class="btn btn-info" [routerLink]="['/add-residence']">Add Residence</button>
 </div>
 </div>

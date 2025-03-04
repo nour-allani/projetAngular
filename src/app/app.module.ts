@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { MainComponent } from './main/main.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreComponent } from './core/core.component';
 import { ResidencesComponent } from './Residence/residences/residences.component';
 import { ResidencesDetailsComponent } from './Residence/residences-details/residences-details.component';
@@ -16,7 +16,8 @@ import { ApartmentsByResidenceComponent } from './Apartements/apartments-by-resi
 import { AddApartmentComponent } from './Apartements/add-apartment/add-apartment.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HomeComponent } from './home/home.component';
-
+import{HttpClientModule} from '@angular/common/http';
+import { UpdateResidenceComponent } from './Residence/update-residence/update-residence.component'
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { HomeComponent } from './home/home.component';
     AddApartmentComponent,
     NotFoundComponent,
     HomeComponent,
+    UpdateResidenceComponent,
     
     
     
@@ -41,7 +43,10 @@ import { HomeComponent } from './home/home.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
