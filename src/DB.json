@@ -31,9 +31,28 @@
     {
       "id": "0",
       "name": "titou",
-      "address": "titouuuuuu",
+      "address": "zaitttter",
       "image": "test",
       "status": "Disponible"
+    },
+    {
+      "id": 0,
+      "name": "guh",
+      "address": "jokmhiljl",
+      "image": "C:/Users/21626/Desktop/projectAng/src/assets/images/landing.jpg",
+      "status": "Disponible"
+    }
+  ],
+  "Apartments": [
+    {
+      "id": "1",
+      "appartNum": "4",
+      "floorNum": 5,
+      "surface": "100",
+      "terrace": "yes",
+      "surfaceTerrace": "20",
+      "category": "S+2",
+      "residence": 4
     }
   ]
 }

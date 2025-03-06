@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Apartment } from 'src/app/core/Models/apartment';
 import { Residence } from 'src/app/core/Models/residence';
 import { ResidenceService } from 'src/app/core/services/residence.service';
 
@@ -11,13 +12,15 @@ export class ResidencesComponent {
  
   constructor(private resServ:ResidenceService) { }
   listResidences:Residence[]=[ ];
+  listAppartments!:Apartment[];
+  list:Apartment[]=[];
     
   ngOnInit(){
    //this.listResidences=this.resServ.getResidence();
    this.resServ.getResidence().subscribe(
     data => this.listResidences=data,
     erreur =>console.log("erreur"),
-    ()=>console.log("le chargementdes residences est terminés ")
+    ()=>console.log("le chargement des residences est terminés ")
     
    );
    }
@@ -54,4 +57,7 @@ export class ResidencesComponent {
             ()=>console.log("le chargementdes residences est terminés ")
             ));
         }
+        showApartment(id:number){
+          this.list=this.listAppartments.filter((appart:Apartment)=>appart.residence.id==id)
+        } 
 }

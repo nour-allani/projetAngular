@@ -11,31 +11,39 @@ import { ResidenceService } from 'src/app/core/services/residence.service';
 })
 export class UpdateResidenceComponent 
  { 
+  constructor( private actR:ActivatedRoute, private resServ: ResidenceService, private R:Router) { }
   id!:number;
-  residence!:Residence;
-  updateForm!: FormGroup;
-  constructor (  private actR:ActivatedRoute,
-    private  resServ:ResidenceService,private router: Router,){}
-  
-  ngOnInit(){
+  residence?:Residence
+  updateForm=new FormGroup
+  ({
+    id:new FormControl(0),
+    name:new FormControl(''),
+    address:new FormControl(''),
+    image:new FormControl(''),
+    status:new FormControl('') 
+  });
     
-    this.updateForm = new FormGroup({
-      id: new FormControl(0),
-      name: new FormControl('', Validators.required),
-      address: new FormControl('', [Validators.required, Validators.minLength(5)]),
-      image: new FormControl('', Validators.required),
-      status: new FormControl('', Validators.required)})
-      this.resServ.getResidenceByID(this.id).subscribe((data) => {
-        if (data) {
-          this.updateForm.patchValue(data); // Injecte les valeurs récupérées
-        }
-    });
-  }
-  updateResidence() {
-      this.resServ.updateResidence(this.residence).subscribe(() => {
-        console.log('Résidence mise à jour avec succès');
-        this.router.navigate(['/residences']); // Redirection après mise à jour
-      });
-    }
+    ngOnInit() {
+  
+      this.id=Number(this.actR.snapshot.paramMap.get('id'));
+      this.resServ.getResidenceByID(this.id).subscribe((donne)=>
+        {
+          this.residence=donne;
+          this.updateForm.patchValue(this.residence);
+        });
 }
+updateR(){
+  console.log(this.updateForm.value);
+  
+    const updatedResidence: Residence = {
+      ...this.updateForm.value,
+      id: this.updateForm.value.id ?? 0 // Ensure id is a number
+    } as Residence;
+    this.resServ.updateResidence(updatedResidence).subscribe(
+      ()=>{alert("Residence updated successfully");
+        this.R.navigate(['/residences']);
+      }
+    );
+  }
+  }
  

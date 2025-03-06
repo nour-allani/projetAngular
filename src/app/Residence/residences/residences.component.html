@@ -19,6 +19,9 @@
       <a   class="btn btn-warning" [routerLink]="['/update',R.id]" [queryParams]="{'title':R.name}">Update</a>
       
       <button class="btn btn-success ml-2" (click)="addToFavorites(R)">Like ❤️</button>
+      <button class="btn btn-info mt-2" [routerLink]="['/add', R.id]">
+        Add Apartment
+      </button>
     </div>
   </div>
 </div>

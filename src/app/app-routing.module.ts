@@ -13,9 +13,9 @@ const routes: Routes = [
   {path:"residences",component:ResidencesComponent},
   { path: 'add-residence', component: AddResidenceComponent },
   {path:"residenceD/:param",component:ResidencesDetailsComponent},
-  { path: 'add', component: AddApartmentComponent },
   { path: 'update/:param', component: UpdateResidenceComponent },
-  {path:"appartment-by-residence/:param",component:ApartmentsByResidenceComponent},
+  { path: 'add/:id', component: AddApartmentComponent },
+{path:"apartments",component:ApartmentsByResidenceComponent},
   
   {path:"**",component:NotFoundComponent}
 ];

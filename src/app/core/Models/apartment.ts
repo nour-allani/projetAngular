@@ -1,10 +1,13 @@
+import { Residence } from "./residence";
+
 export class Apartment {
+    id?: number;
     apartNum!: number;
     floorNum!: number;
     surface!: number;
     terrace!: boolean;
-    surfaceterrace!: number
+    surfaceTerrace!: number
     category!: string;
-    ResidenceId!: number
+    residence!: Residence;
 }
 
